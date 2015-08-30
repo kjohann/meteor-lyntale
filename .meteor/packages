@@ -5,7 +5,9 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
-neo:reveal-js
 iron:router
+themeteorchef:commonmark
+perak:codemirror
+reactive-var
+less

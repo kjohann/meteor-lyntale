@@ -1,0 +1,15 @@
+<template name="Slide">
+	<section class="slide">
+		<header>
+			<h1>{{title}}</h1>
+		</header>
+		<artice class="content">
+			{{{content markdown}}}		
+		</artice>
+		<footer>
+			<span>{{currentDate}}</span>
+			<span>{{author}}</span>
+			<span>{{page}}/{{totalPages}}</span>
+		</footer>
+	</section>
+</template>
