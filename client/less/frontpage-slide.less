@@ -1,0 +1,33 @@
+@import "constants.import.less";
+
+#main {
+	> .slide {
+		&.frontpage {
+			> .content {
+				> .content {
+					padding-top: 25%;
+					text-align: center;
+					> h1 {
+						display: inline-block;
+						white-space: nowrap;
+						margin-bottom: 4w;
+						
+						&:after {
+						    display: block;
+						    border-top: 4px solid @red;
+						    margin: 0 auto;
+						    width: 85%;
+						    max-width: 30vw;					
+						}
+					}
+					
+					> h2 {
+						min-height: 6vw;
+						margin: 3vw auto 3vw auto;
+						width: 80%;
+					}							
+				}
+			}
+		}
+	}
+}

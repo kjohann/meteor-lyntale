@@ -1,15 +1,19 @@
 <template name="Slide">
 	<section class="slide">
-		<header>
-			<h1>{{title}}</h1>
-		</header>
-		<artice class="content">
-			{{{content markdown}}}		
-		</artice>
-		<footer>
-			<span>{{currentDate}}</span>
-			<span>{{author}}</span>
-			<span>{{page}}/{{totalPages}}</span>
-		</footer>
+		<section class="content">
+			<header>
+				<span class="show-title">{{title}}</span>
+			</header>
+			<artice class="content">
+				{{{content markdown}}}		
+			</artice>
+			<footer>
+				<span class="footer-content">
+					<span class="date">{{currentDate}}</span>
+					<span class="author">{{author}}</span>
+					<span class="pages">{{page}}/{{totalPages}}</span>	
+				</span>
+			</footer>
+		</section>
 	</section>
 </template>

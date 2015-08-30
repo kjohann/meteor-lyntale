@@ -1,0 +1,91 @@
+@import "constants.import.less";
+
+#main {
+    > .slide {
+        width: 100vw;
+        height: 56.25vw;
+        background: @darker-grey;
+        color: @light-grey;
+        -webkit-font-smoothing: antialiased;
+        font-family: Georgia, serif;
+        font-weight: lighter;
+        line-height: 1.5;
+        max-height: 100vh;
+        max-width: 177.78vh;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        
+        > .content {
+                padding: 1em 4em 5em 4em;
+                height: 100%;
+                box-sizing: border-box;
+                overflow: hidden;
+            > .content {
+                display: block;
+                height: 100%;
+                width: 100%;
+               > h1 {
+                    display: table;
+                    white-space: nowrap;
+                    
+                    &:after {
+                            border-top: 1px solid #515151;
+                            content: '';
+                            display: table-cell;
+                            position: relative;
+                            top: 0.6em;
+                            width: 100vw;
+                            left: 1.5%;
+                    }
+                } 
+            }
+            
+            > header {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                font-weight: lighter;
+                opacity: 0.5;                
+                 
+                 > .show-title {
+                    width: 100%;
+                    text-align: center;
+                    display: inline-block;
+                    font-size: @header-footer-font-size;
+                }   
+            }
+            
+            > footer { 
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                font-weight: lighter;
+                opacity: 0.5;
+                
+                > .footer-content{
+                    width: 100%;
+                    text-align: center;
+                    display: inline-block;
+                    font-size: @header-footer-font-size;
+                    
+                    > .date {
+                        position: absolute;                     
+                        left: 3.3vw;
+                    }
+                    
+                    > .pages {
+                        position: absolute;
+                        right: 3.3vw;
+                    }
+                }
+            }
+        }
+    }
+}
+
