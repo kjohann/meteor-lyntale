@@ -1,3 +1,8 @@
-// Template.Index.content = function (markdown) {
-// 	return parseMarkdown(markdown);	
-// }
+Template.Index.helpers({
+	editorOptions: function() {
+         return {
+		    lineNumbers: true,
+            mode: "markdown"
+        }		
+	}
+});
