@@ -3,29 +3,34 @@
 		<form id="slideshow-form">
 			<article class="metadata form-block">
 				<article class="form-group horizontal">
-					<input id="slideshow-title" type="text" name="title" placeholder="Slideshow title"/>
+					<input id="slideshow-title" type="text" name="title" placeholder="Slideshow title" value="{{title}}"/>
 				</article>
 				<article class="form-group horizontal">
-					<input id="slideshow-name" type="text" name="name" placeholder="Slideshow name"/>
+					<input id="slideshow-name" type="text" name="name" placeholder="Slideshow name" value="{{name}}"/>
 				</article>				
 				<article class="form-group horizontal">
-					<input id="slideshow-author" type="text" name="author" placeholder="Your name here"/>
+					<input id="slideshow-author" type="text" name="author" placeholder="Your name here" value="{{author}}"/>
 				</article>	
 				<article class="form-group horizontal">
 					<input type="submit" id="slideshow-create" value="Create slideshow" class="btn"/>
 				</article>
 				<article class="form-group horizontal">
-					<input type="submit" id="slideshow-fetch" value="Set working slideshow" class="btn"/>
-				</article>				
-				<!--<article class="form-group horizontal">
-					<input id="slide-page" type="text" name="page" placeholder="page number"/>
-				</article>							-->
+					<input type="submit" id="slideshow-fetch" value="{{setOrClearSlideshowText}}" class="btn"/>
+				</article>										
 			</article>
 		</form>
 		<form id="slide-form">
-			<article class="textarea">
-			{{> CodeMirror id="markdown" name="markdown" options=editorOptions reactiveVar="currentSlide"}}
-			</article>
+			<article class="form-block">
+				<article class="textarea">
+				{{> CodeMirror id="markdown" name="markdown" options=editorOptions reactiveVar="workingDoc"}}
+				</article>
+				<article class="form-group horizontal">
+					<input id="slide-page" type="text" name="page" placeholder="page number"/>
+				</article>				
+				<article class="form-group horizontal">
+					<input type="submit" id="slide-submit" value="{{submitSlideText}}" class="btn"/>
+				</article>					
+			</article>							
 		</form>
 	</section>
 	<section class="preview-wrapper">

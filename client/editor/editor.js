@@ -3,10 +3,9 @@ var getFormData = function(selector) {
     return _.object(_.pluck(data, 'name'), _.pluck(data, 'value'));
 };
 
-var clearForm = function(formSelector) {
-   _.each($(formSelector), function(input) {
-       $(input).val('');
-   });    
+var createEmptySlide = function (slideShowId) {
+    var id = Slides.insert({slideShowId: slideShowId, page: '1'});
+    return Slides.findOne(id);
 }
 
 Template.Editor.helpers({
@@ -16,10 +15,17 @@ Template.Editor.helpers({
             mode: "markdown"
         }		
 	},
+    test: function() {console.log('test');return 'hei';},
     fetchPreview: function() {
-        var current = Session.get('currentSlide');
+        var current = Session.get('workingDoc');
         if(current) return current;
         return ' ';
+    },
+    submitSlideText: function() {
+        return Session.get('currentSlide') ? 'Update slide' : 'Create slide';
+    },
+    setOrClearSlideshowText: function() {
+        return Session.get('currentShow') ? 'Clear current slideshow' : 'Set current slideshow';
     }
 });
 
@@ -31,9 +37,9 @@ Template.Editor.events({
        var existing = SlideShows.findOne({name: slideShow.name});
        
        if(typeof(existing) === 'undefined') {
-           SlideShows.insert(slideShow);
-           console.log('inserted new', slideShow);
-           clearForm('#slideshow-form input[type="text"]');
+           var id = SlideShows.insert(slideShow);
+           var slide = createEmptySlide(id);
+           Router.go('/editor/' + slideShow.name + '/' + slide.page);
        } else {
            alert('A slideshow with that name already exists!'); //yep - that's user firendly and secure right there :)
        }
@@ -48,6 +54,14 @@ Template.Editor.events({
        if(typeof(existing) !== 'undefined') {
            console.log('current slideshow set');
            Session.set('currentShow', existing);
+       } else if(typeof(Session.get('currentShow')) !== 'undefined' && !slideShowName) {
+           Router.go('/');           
        }
+   },
+   'click #slide-submit': function(e) {
+       e.preventDefault();
+       
+       var slide = getFormData('#slide-form');
+       console.log(slide);
    }
 });
