@@ -1,0 +1,143 @@
+@import "constants.import.less";
+
+#main {
+	> .editor {
+	    position: relative;
+	    width: 50%;
+	    height: 100%;
+	    float: left;		
+		> #slideForm {
+			> .metadata.form-block {
+				> .form-group {
+					&.horizontal {
+						display: inline;
+						> input {
+							padding: .5em .6em;
+						    display: inline-block;
+						    border: 1px solid #ccc;
+						    box-shadow: inset 0 1px 3px #ddd;
+						    border-radius: 4px;
+						    vertical-align: middle;
+						    -webkit-box-sizing: border-box;
+						    -moz-box-sizing: border-box;
+						    box-sizing: border-box;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	> .preview-wrapper {	
+    position: relative;
+    width: 50%;
+    float: right;
+		> .preview {
+			position: relative;
+			width: 100%;
+			height: 0;
+			padding-bottom: 56.25%;
+		    > .slide {
+		        width: 100%;
+		        height: 100%;
+		        background: @darker-grey;
+		        color: @light-grey;
+		        -webkit-font-smoothing: antialiased;
+		        font-family: Georgia, serif;
+		        font-weight: lighter;
+		        line-height: 1.5;
+		        position: absolute;
+		        top: 0;
+		        bottom: 0;
+		        left: 0;
+		        right: 0;
+		        
+		        > .content {
+		                padding: 1em 4em 5em 4em;
+		                height: 100%;
+		                box-sizing: border-box;
+		                overflow: hidden;
+		            > .content {
+		                display: block;
+		                height: 100%;
+		                width: 100%;
+		               > h1 {
+		                    display: table;
+		                    white-space: nowrap;
+							font-size: 1.3em;
+		                    
+		                    &:after {
+		                            border-top: 1px solid #515151;
+		                            content: '';
+		                            display: table-cell;
+		                            position: relative;
+		                            top: 0.6em;
+		                            width: 100%;
+		                            left: 1.5%;
+		                    }
+		                }
+						
+						> h2 {
+							font-size: 1.1em;
+						}
+						
+						> h3 {
+							font-size: 1.0em;
+						}	                
+						
+						> h4 {
+							font-size: 0.9 em;
+						}
+						
+						> h5, h6 {
+							font-size: 0.8 em;
+						}
+		            }
+		            
+		            > header {
+		                position: absolute;
+		                top: 0;
+		                left: 0;
+		                width: 100%;
+		                font-weight: lighter;
+		                opacity: 0.5;                
+		                 
+		                 > .show-title {
+		                    width: 100%;
+		                    text-align: center;
+		                    display: inline-block;
+		                    font-size: @header-footer-font-size;
+		                }   
+		            }
+		            
+		            > footer { 
+		                position: absolute;
+		                bottom: 0;
+		                left: 0;
+		                width: 100%;
+		                font-weight: lighter;
+		                opacity: 0.5;
+		                
+		                > .footer-content{
+		                    width: 100%;
+		                    text-align: center;
+		                    display: inline-block;
+		                    font-size: @header-footer-font-size;
+		                    
+		                    > .date {
+		                        position: absolute;                     
+		                        left: 3.3vw;
+		                    }
+		                    
+		                    > .pages {
+		                        position: absolute;
+		                        right: 3.3vw;
+		                    }
+		                }
+		            }
+		        }
+		    }			
+		}		
+	}	
+	
+}
