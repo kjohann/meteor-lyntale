@@ -25,10 +25,18 @@
 				{{> CodeMirror id="markdown" name="markdown" options=editorOptions reactiveVar="workingDoc"}}
 				</article>
 				<article class="form-group horizontal">
-					<input id="slide-page" type="text" name="page" placeholder="page number"/>
-				</article>				
+					<input id="slide-page" type="text" name="page" value="{{page}}" placeholder="page number"/>
+				</article>		
 				<article class="form-group horizontal">
-					<input type="button" id="slide-submit" value="{{submitSlideText}}" class="btn"/>
+					<input id="slide-isdefault" type="radio" value="default" name="slideType" {{checked 'default'}}/>
+					<label class="radio-label">Default</label>
+					<input id="slide-isfrontpage" type="radio" value="frontpage" name="slideType" {{checked 'frontpage'}} />
+					<label class="radio-label">Fronpage</label>										
+					<input id="slide-isAgenda" type="radio" value="agenda" name="slideType" {{checked 'agenda'}}/>
+					<label class="radio-label">Agenda</label>					
+				</article>		
+				<article class="form-group horizontal">
+					<input type="button" id="slide-update" value="Update current slide" class="btn"/>
 				</article>		
 				<article class="form-group horizontal">
 					<input type="button" id="slide-fetch" value="Set current slide" class="btn"/>
@@ -41,7 +49,7 @@
 	</section>
 	<section class="preview-wrapper">
 		<section class="preview">
-			{{> Slide title=title markdown=fetchPreview author=author page=page totalPages=totalPages}}
+			{{> Slide title=title markdown=fetchPreview author=author page=page slideType=slideType totalPages=totalPages}}
 		</section>
 	</section>
 </template>
