@@ -40,6 +40,9 @@ Template.Editor.helpers({
     setOrClearSlideshowText: function() {
         return Session.get('currentShow') ? 'Clear current slideshow' : 'Set current slideshow';
     },
+    updateOrCreateSlideshowText: function() {
+        return Session.get('currentShow') ? 'Update slideshow' : 'Create slideshow';
+    },
     checked: function(radioVal) {
         var currentSlide = Session.get('currentSlide');
         if(!currentSlide) return '';
@@ -58,11 +61,14 @@ Template.Editor.events({
         }
        
         var existing = SlideShows.findOne({name: slideShow.name});
-       
+        var currentShow = Session.get('currentShow');
+        
         if(typeof(existing) === 'undefined') {
             var id = SlideShows.insert(slideShow);
             var slide = createEmptySlide(id);
             Router.go('EditSlide', {slideshow: slideShow.name, page: slide.page});
+        } else if(currentShow) {
+            SlideShows.update(currentShow._id, {$set: {author: slideShow.author, title: slideShow.title}});
         } else {
             Notifications.error('A slideshow with that name already exists!'); 
         }
