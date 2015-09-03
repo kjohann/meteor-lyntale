@@ -5,7 +5,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-insecure
 iron:router
 themeteorchef:commonmark
 perak:codemirror
@@ -13,3 +12,4 @@ reactive-var
 less
 simple:highlight.js
 gfk:notifications
+insecure

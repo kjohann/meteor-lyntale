@@ -16,4 +16,13 @@
 			</footer>
 		</section>
 	</section>
+	<section class="messages">
+		<ul>
+		{{#each messages}}
+			{{#if text}}
+				<li>{{text}}</li>
+			{{/if}}
+		{{/each}}
+		</ul>
+	</section>
 </template>
