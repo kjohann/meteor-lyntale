@@ -92,7 +92,6 @@ Template.Editor.events({
             Notifications.error('Need to have a page number');
             return;
         }
-        console.log(slide)
         var currentShow = getCurrentShowAndNotifyIfNotSet();
         if(!currentShow) return;
        

@@ -138,6 +138,52 @@
 		                }
 		            }
 		        }
+				
+				&.frontpage {
+					> .content {
+						> .content {
+							padding-top: 25%;
+							text-align: center;
+							> h1 {
+								display: inline-block;
+								white-space: nowrap;
+								
+								&:after {
+								    display: block;
+								    border-top: 4px solid @red;
+								    margin: 0 auto;
+								    width: 85%;
+								    max-width: 30vw;					
+								}
+							}
+							
+							> h2 {
+								min-height: 6vw;
+								margin: 3vw auto 3vw auto;
+								width: 80%;
+							}							
+						}
+					}
+				}				
+				
+				&.agenda {
+					> .content {
+						> .content {					
+							ul {
+								position: absolute;
+								bottom: 3em;
+								list-style-type: none;
+								padding-left: 0;
+								
+								> li {
+								    font-size: 1.1em;
+		    						text-transform: uppercase;
+								    margin-top: 0.5em;
+								}
+							}							
+						}
+					}
+				}				
 		    }			
 		}		
 	}	
