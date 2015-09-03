@@ -7,7 +7,7 @@ var getNextPageNumber = function(slideShowId) {
     var slideShow = SlideShows.findOne(slideShowId);
     if(!slideShow) throw 'This should not happen :('
     
-    return ''+Slides.find({slideShowId: slideShow._id}).count();
+    return ''+(Slides.find({slideShowId: slideShow._id}).count() + 1);
 }
 
 var createEmptySlide = function (slideShowId, isNew) {
@@ -114,6 +114,7 @@ Template.Editor.events({
         
         Slides.update(existingInSession._id, {$set: {page: slide.page, markdown: slide.markdown, slideType: slide.slideType}});
         Router.go('EditSlide', {slideshow: currentShow.name, page: slide.page});  
+        Notifications.success('Updated');
     },
     'click #slide-fetch': function(e) {
         e.preventDefault();
