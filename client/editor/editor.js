@@ -8,6 +8,15 @@ var createEmptySlide = function (slideShowId) {
     return Slides.findOne(id);
 }
 
+var getCurrentShowAndNotifyIfNotSet = function() {
+   var currentSlideshow = Session.get('currentShow');
+    if(typeof(currentSlideshow) === 'undefined') {
+       alert('No active slideshow set!');
+       return null;
+    }
+    return currentSlideshow;
+}
+
 Template.Editor.helpers({
 	editorOptions: function() {
          return {
@@ -34,12 +43,17 @@ Template.Editor.events({
        e.preventDefault();
        var slideShow = getFormData('#slideshow-form');
        
+       if(!slideShow.name) {
+           alert('Name is required');
+           return;
+       }
+       
        var existing = SlideShows.findOne({name: slideShow.name});
        
        if(typeof(existing) === 'undefined') {
            var id = SlideShows.insert(slideShow);
            var slide = createEmptySlide(id);
-           Router.go('/editor/' + slideShow.name + '/' + slide.page);
+           Router.go('EditSlide', {slideshow: slideShow.name, page: slide.page});
        } else {
            alert('A slideshow with that name already exists!'); //yep - that's user firendly and secure right there :)
        }
@@ -47,15 +61,18 @@ Template.Editor.events({
    'click #slideshow-fetch': function(e) {
        e.preventDefault();
        
-       var slideShowName = getFormData('#slideshow-form').name;
-       console.log(slideShowName);
-       var existing = SlideShows.findOne({name: slideShowName});
+       var currentShow = Session.get('currentShow');
+       if(currentShow) {
+           Router.go('Editor')
+           return;
+       }
        
+       var slideShowName = getFormData('#slideshow-form').name;
+       var existing = SlideShows.findOne({name: slideShowName});
        if(typeof(existing) !== 'undefined') {
-           console.log('current slideshow set');
-           Session.set('currentShow', existing);
+           Router.go('EditSlide', {slideshow: existing.name, page: '1'});   
        } else if(typeof(Session.get('currentShow')) !== 'undefined' && !slideShowName) {
-           Router.go('/');           
+           Router.go('Editor');           
        }
    },
    'click #slide-submit': function(e) {
@@ -63,5 +80,24 @@ Template.Editor.events({
        
        var slide = getFormData('#slide-form');
        console.log(slide);
+   },
+   'click #slide-fetch': function(e) {
+       e.preventDefault();
+       
+       var currentSlideshow = getCurrentShowAndNotifyIfNotSet();
+       if(!currentSlideshow) return;
+       
+       var slideData = getFormData('#slide-form');
+       var slide = Slides.findOne({slideShowId: currentSlideshow._id, page: slideData.page});
+       if(typeof(slide) === 'undefined') {
+           alert('No such slide on slideshow with name' + currentSlideshow.name);
+           return;
+       }
+       Router.go('EditSlide', {slideshow: currentSlideshow.name, page: slide.page});
+   },
+   'click #slide-create': function(e) {
+       e.preventDefault();
+       
+       
    }
 });
